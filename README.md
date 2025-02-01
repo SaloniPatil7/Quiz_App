@@ -23,8 +23,7 @@ To run the Quiz App locally, follow these steps:
    ( After running server.js in terminal open this in your browser **http://localhost:5000/proxy**)
     ->http://localhost:5000/proxy fetches all data for us.
     ->this helps our frontend to fetch data without getting **cors** restriction error
-   3.Copy- cd Quiz_App
-   Open index.html in your web browser.
+3. Open index.html in your web browser.
 
 # How to Play  
 ->Read the questions and select your answer and Submit It.  
