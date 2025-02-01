@@ -19,7 +19,7 @@ To run the Quiz App locally, follow these steps:
    Copy-  git clone https://github.com/SaloniPatil7/Quiz_App
 2. Navigate to the project directory: cd my-cors-proxy
 3.Run:  node server.js
-    **( After running server.js in terminal open **http://localhost:5000/proxy** in your browser )**
+    **( After running server.js in terminal open http://localhost:5000/proxy in your browser )**
     --->http://localhost:5000/proxy fetches all data for us.
     --->this helps our frontend to fetch data without getting **cors** restriction error
 4. Open index.html in your web browser.
