@@ -16,14 +16,13 @@ Welcome to the Quiz App! This project is a simple web application developed usin
 ## Getting Started    
 To run the Quiz App locally, follow these steps:  
 1. Clone the repository:
-   Copy-   git clone (https://github.com/SaloniPatil7/Quiz_App)
-2. Navigate to the project directory:
-    Copy-  cd my-cors-proxy
-    node server.js
-   ( After running server.js in terminal open this in your browser **http://localhost:5000/proxy**)
-    ->http://localhost:5000/proxy fetches all data for us.
-    ->this helps our frontend to fetch data without getting **cors** restriction error
-3. Open index.html in your web browser.
+   Copy-  git clone https://github.com/SaloniPatil7/Quiz_App
+2. Navigate to the project directory: cd my-cors-proxy
+3.Run:  node server.js
+    **( After running server.js in terminal open **http://localhost:5000/proxy** in your browser )**
+    --->http://localhost:5000/proxy fetches all data for us.
+    --->this helps our frontend to fetch data without getting **cors** restriction error
+4. Open index.html in your web browser.
 
 # How to Play  
 ->Read the questions and select your answer and Submit It.  
