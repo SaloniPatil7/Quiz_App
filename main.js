@@ -1,11 +1,4 @@
 
-
-
-
-
-
-
-
 (function () {
   const baseURL = 'http://localhost:5000/proxy';
   const containerEl = document.querySelector('.container');
