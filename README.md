@@ -7,6 +7,7 @@ Welcome to the Quiz App! This project is a simple web application developed usin
 - Multiple choice questions
 - Real-time scoring
 - Responsive design for various screen sizes
+- detailed Solution of Question is available after submitting it
 
 ## Technologies Used    
 - **HTML**: For structuring the web pages
