@@ -31,6 +31,7 @@
     displayQuestion();
   }
 
+  //to display questions
   function displayQuestion() {
     if (currentQuestionIndex < questions.length) {
       const question = questions[currentQuestionIndex].description;
@@ -56,6 +57,8 @@
     }
   }
 
+
+  //To fetch data from API
   async function fetchQuiz() {
     try {
       const response = await fetch(baseURL);
@@ -89,6 +92,7 @@
     });
   }
 
+  
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     if (e.target.quiz.value) {
@@ -100,6 +104,7 @@
     }
   });
 
+  
   function checkQuiz(selected) {
     if (currentQuestionIndex < questions.length) {
       answeredQus++;
@@ -160,6 +165,7 @@
     finishBtn.addEventListener('click', finishQuiz);
   }
 
+  
   function clearDetailedSolutionLink() {
     const detailedSolutionLink = document.querySelector('.detailed-solution');
     if (detailedSolutionLink) {
@@ -167,6 +173,8 @@
     }
   }
 
+
+  //To Show Detailed Solution
   function showDetailedSolution(solution) {
     const solutionContainer = document.createElement('div');
     solutionContainer.classList.add('solution-container');
@@ -184,6 +192,7 @@
     });
   }
 
+  //To get next Question
   function getNextQuiz() {
     currentQuestionIndex++;
     const nextBtn = document.querySelector('.next-btn');
@@ -198,6 +207,7 @@
     solutionVisible = false; // Reset solution visibility
   }
 
+  //To finish Quiz
   function finishQuiz() {
     const nextBtn = document.querySelector('.next-btn');
     const finishBtn = document.querySelector('.finish-btn');
@@ -225,6 +235,7 @@
       });
   }
 
+  //To Play again
   function playAgain() {
     score = 0;
     answeredQus = 0;
