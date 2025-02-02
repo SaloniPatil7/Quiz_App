@@ -1,6 +1,12 @@
 
 
-(function() {
+
+
+
+
+
+
+(function () {
   const baseURL = 'http://localhost:5000/proxy';
   const containerEl = document.querySelector('.container');
   const form = document.querySelector('#quiz_form');
@@ -9,16 +15,23 @@
   const buttonsEl = document.querySelector('.buttons');
   const scoreEl = document.querySelector('.scoreBoard .score-num');
   const answeredEl = document.querySelector('.scoreBoard .answered-num');
+  const TopicE1 = document.querySelector('.Topic');
+  const TitleE1 = document.querySelector('.Title');
 
   let currentQuestionIndex = 0; // Track the current question index
   let score = 0;
   let answeredQus = 0;
   let questions = []; // Store all questions
+  let Topic = '';
+  let Title = '';
+  let solutionVisible = false; // Track if the detailed solution is visible
 
   window.addEventListener('DOMContentLoaded', quizApp);
 
   async function quizApp() {
     const data = await fetchQuiz();
+    Topic = data.topic;
+    Title = data.title;
     questions = data.questions; // Store all questions
     updateScoreBoard();
     addPlaceholder();
@@ -29,6 +42,7 @@
     if (currentQuestionIndex < questions.length) {
       const question = questions[currentQuestionIndex].description;
       const allOptions = questions[currentQuestionIndex].options;
+
       let answer;
       const incorrect_answers = [];
 
@@ -43,7 +57,7 @@
       const options = [...incorrect_answers.map(item => item.description)];
       options.splice(Math.floor(Math.random() * (options.length + 1)), 0, answer);
 
-      generateTemplate(question, options, answer);
+      generateTemplate(question, options, answer, Topic, Title);
     } else {
       finishQuiz(); // If there are no more questions, finish the quiz
     }
@@ -64,10 +78,13 @@
     }
   }
 
-  function generateTemplate(question, options, answer) {
+  function generateTemplate(question, options, answer, Topic, Title) {
     removePlaceHolder();
     optionsEl.innerHTML = '';
+    TopicE1.innerHTML = "Topic: " + Topic;
+    TitleE1.innerHTML = "Title: " + Title;
     qusEl.innerText = question;
+
     options.forEach((option, index) => {
       const item = document.createElement('div');
       item.classList.add('option');
@@ -91,7 +108,6 @@
   });
 
   function checkQuiz(selected) {
-    // Ensure current question exists
     if (currentQuestionIndex < questions.length) {
       answeredQus++;
       const correctAnswer = questions[currentQuestionIndex].options.find(option => option.is_correct).description;
@@ -102,6 +118,28 @@
       form.quiz.forEach(input => {
         if (input.value === correctAnswer) {
           input.parentElement.classList.add('correct');
+        }
+      });
+
+      // Clear any previous detailed solution link
+      clearDetailedSolutionLink();
+
+      // Show detailed solution link after answering
+      const detailedSolutionLink = document.createElement('a');
+      detailedSolutionLink.innerText = 'View Detailed Solution';
+      detailedSolutionLink.href = '#';
+      detailedSolutionLink.classList.add('detailed-solution');
+      detailedSolutionLink.style.display = 'block'; // Ensures it appears below
+
+      // Append the detailed solution link below the buttons
+      buttonsEl.appendChild(detailedSolutionLink);
+
+      // Event listener for Detailed Solution
+      detailedSolutionLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (!solutionVisible) {
+          solutionVisible = true; // Set the flag to true
+          showDetailedSolution(questions[currentQuestionIndex].detailed_solution);
         }
       });
     }
@@ -129,6 +167,30 @@
     finishBtn.addEventListener('click', finishQuiz);
   }
 
+  function clearDetailedSolutionLink() {
+    const detailedSolutionLink = document.querySelector('.detailed-solution');
+    if (detailedSolutionLink) {
+      buttonsEl.removeChild(detailedSolutionLink);
+    }
+  }
+
+  function showDetailedSolution(solution) {
+    const solutionContainer = document.createElement('div');
+    solutionContainer.classList.add('solution-container');
+    solutionContainer.innerHTML = `
+      <h3>Detailed Solution</h3>
+      <p>${solution}</p>
+      <button class="close-solution">Close</button>
+    `;
+    containerEl.appendChild(solutionContainer);
+
+    // Close button functionality
+    solutionContainer.querySelector('.close-solution').addEventListener('click', () => {
+      containerEl.removeChild(solutionContainer);
+      solutionVisible = false; // Reset the flag when the solution is closed
+    });
+  }
+
   function getNextQuiz() {
     currentQuestionIndex++;
     const nextBtn = document.querySelector('.next-btn');
@@ -139,6 +201,8 @@
 
     buttonsEl.querySelector('button[type="submit"]').style.display = 'block';
     displayQuestion();
+    clearDetailedSolutionLink(); // Clear solution link when going to the next question
+    solutionVisible = false; // Reset solution visibility
   }
 
   function finishQuiz() {
@@ -186,5 +250,11 @@
     if (placeholderEl) {
       containerEl.removeChild(placeholderEl);
     }
+    // Remove previous detailed solution if exists
+    const solutionContainer = document.querySelector('.solution-container');
+    if (solutionContainer) {
+      containerEl.removeChild(solutionContainer);
+    }
   }
 })();
+

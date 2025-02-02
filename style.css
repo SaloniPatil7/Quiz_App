@@ -1,16 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@600&display=swap');
-*{
+
+* {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
 
-html{
+html {
   font-family: 'Nunito', sans-serif;
   font-size: 20px;
 }
 
-section{
+section {
   min-height: 100vh;
   width: 100%;
   background-color: rgb(0, 0, 17);
@@ -19,7 +20,7 @@ section{
   justify-content: center;
 }
 
-.container{
+.container {
   background-color: rgb(40, 40, 44);
   padding: 50px 30px 30px 30px;
   width: 90%;
@@ -30,18 +31,20 @@ section{
   position: relative;
   overflow: hidden;
 }
-.container .scoreBoard{
+
+.container .scoreBoard {
   position: absolute;
   top: 20px;
   right: 20px;
 }
-form h1{
+
+form h1 {
   font-size: 1.4rem;
   line-height: 2rem;
   margin-bottom: 2rem;
 }
 
-form .option{
+form .option {
   font-size: 1.2rem;
   margin: 10px 0 0 10px;
   padding: 10px;
@@ -52,23 +55,28 @@ form .option{
   align-items: center;
   justify-content: stretch;
 }
-form .option label{
+
+form .option label {
   width: 100%;
-  margin-left: 10px ;
+  margin-left: 10px;
   cursor: pointer;
   justify-self: stretch;
 }
-form .option:hover{
+
+form .option:hover {
   background-color: rgb(23, 23, 24);
 }
-form .option input[type="radio"]:checked + label{
+
+form .option input[type="radio"]:checked+label {
   color: rgb(0, 238, 255);
 }
-form .option.correct{
+
+form .option.correct {
   background-color: green;
 }
+
 form button,
-.container .result-overlay button{
+.container .result-overlay button {
   width: 100%;
   margin-top: 20px;
   padding: 10px;
@@ -81,22 +89,27 @@ form button,
   cursor: pointer;
   transition: .3s ease background-color;
 }
+
 button:hover,
-.container .result-overlay button:hover{
+.container .result-overlay button:hover {
   background-color: rgb(145, 148, 155);
 }
-.finish-btn, .next-btn{
+
+.finish-btn,
+.next-btn {
   width: 50%;
   display: inline-block;
 }
-.finish-btn{
+
+.finish-btn {
   border-right: 1px solid black;
 }
-.next-btn{
+
+.next-btn {
   border-left: 1px solid black;
 }
 
-.container .result-overlay{
+.container .result-overlay {
   position: absolute;
   top: 0;
   left: 0;
@@ -105,14 +118,16 @@ button:hover,
   background-color: rgb(40, 40, 44);
   text-align: center;
   display: flex;
-  align-items:center ;
+  align-items: center;
   justify-content: center;
   flex-direction: column;
 }
-.container .result-overlay .final-result{
+
+.container .result-overlay .final-result {
   font-size: 5rem;
 }
-.container .placeholder{
+
+.container .placeholder {
   position: absolute;
   top: 0;
   left: 0;
@@ -125,11 +140,29 @@ button:hover,
   background-repeat: no-repeat;
 }
 
-@media (max-width: 768px){
-  html{
+@media (max-width: 768px) {
+  html {
     font-size: 17px;
   }
-  .container form h1{
+
+  .container form h1 {
     font-size: 1.5rem;
-  } 
+  }
+}
+
+.container .Title {
+
+  margin-left: 55px;
+  color: rgb(255, 255, 255);
+}
+
+.container .Topic {
+  margin-bottom: 30px;
+  margin-left: 65px;
+  color: rgb(255, 255, 255);
+}
+
+
+.container .scoreBoard .score-num{
+  color: green;
 }
